@@ -12,7 +12,7 @@ delT=0.001; %sample in spacing
 duration=5*T; %total 5 cycles
 %N=100;
 N=round(duration/delT); %Total number of points
-t=(0:N-1)*delT; %time array
+t=(0:N-1)*delT; %defining time array
 
 X=A*sin(2*pi*F*t);
 
