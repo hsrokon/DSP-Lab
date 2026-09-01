@@ -1,0 +1,86 @@
+clear all
+close all
+
+%% Test convolution:
+x=[1 1 1];
+nx=-1:1;
+h=[1 1 1];
+nh=5:7;
+
+[y, ny] = conv_m(x, nx, h, nh);
+
+figure
+stem(ny,y)
+
+%% Use of filter command
+clear all
+close all
+
+x= ones(1,10);
+% Moving average:
+L=5
+b1= (1/L)*ones(1,L);
+a1=1;
+
+y1= filter(b1,a1,x);
+figure
+stem(y1)
+
+% Accumulator:
+b2=1;
+a2=[1 -1];
+y2= filter(b2,a2,x);
+figure
+stem(y2)
+
+%% Correlation
+
+clear all
+close all
+
+x=[1 1 1 1 0 0 0 0 0 0 0 0];
+y=[0 0 0 0 0 0 0 0 0.5 0.5 0.5 0.5];
+Ts= 0.000001;
+c= 3e8; % speed of light
+[ryx lags] = xcorr(y,x);
+
+figure
+stem(lags,ryx)
+
+RR= ryx(13:end);
+[Max_RR,max_ind]= max(RR)
+
+Round_trip_delay= max_ind*Ts;
+
+distance= 0.5*Round_trip_delay*c
+
+%%
+clear all
+
+X1= [5 6 10 12 11];
+N1= [-1 2 4 3 7];
+[Y1 I]= max(X1);
+N1(I);
+
+%% Test problem:
+clear all
+close all
+
+h= [1 2 3 4];
+x=ones(1,4);
+y1= conv(x,h)
+
+y2= filter(h,1,x)
+
+%% Correlation coefficient calculation
+close all
+clear all
+
+X=[1 2 3];
+%Y=-1*[1 2 3];
+Y=-1*[1 2 3];
+rxy= corr_coefficient(X,Y)
+
+
+
+
